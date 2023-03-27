@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import { ItemCard } from "../../common/utilities";
 
 const Home = () => {
   return (
-    <div className='home'>Home</div>
-  )
-}
+    <div className="home">
+      <ItemCard />
+    </div>
+  );
+};
 
-export default Home
+export default Home;
