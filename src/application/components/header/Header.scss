@@ -1,0 +1,14 @@
+@use "../../../common/styles/abstracts/variables" as *;
+
+.header{
+    height: 60px;
+    border-bottom: 2px solid $light;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 0px 20px;
+    .logo_text{
+        font-size: 1.3rem;
+        color: $primary_color;
+    }
+}
