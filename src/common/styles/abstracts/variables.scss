@@ -1,5 +1,10 @@
-$primary_color: #5A778E;
+$primary_color: #2977b7;
 $secondary_color: #444444;
 
 $dark: #444444;
-$light: #F5F5F5;
+$light: #eeeeee;
+
+$muted_text: mix($light, black, 50%);
+
+
+$main_shadow: rgba(99, 99, 99, 0.4) 2px 2px 8px -1px;
