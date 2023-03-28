@@ -1,4 +1,3 @@
-import retrieveData from "../../application/api/retrieveData";
 import Layout from "../../application/components/Layout";
 import Home from "../../pages/Home";
 import Episodes from "../../pages/Podcast/Outlet/Episodes";
@@ -7,10 +6,10 @@ import ItemCard from "../components/ItemCard";
 import AudioPlayer from "../components/AudioPlayer";
 import Podcast from "../../pages/Podcast";
 import SearchField from "../components/SearchField";
-
+import AppProvider from "../../application/context/AppContext";
 
 export {
-  retrieveData,
+  AppProvider,
   Layout,
   Home,
   Podcast,
