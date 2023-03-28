@@ -1,0 +1,23 @@
+@use "../../../../common/styles/abstracts/variables.scss" as *;
+@import "../../../../common/styles/components/CardOutline.scss";
+
+.episode {
+  .episode_card {
+    @include card_outline;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    hr {
+      border: 1px solid $light;
+    
+    }
+    .title {
+      font-size: 1.4rem;
+    }
+    .description {
+      font-style: italic;
+    }
+  }
+}

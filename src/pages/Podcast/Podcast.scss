@@ -1,0 +1,14 @@
+@use "../../common/styles/abstracts/variables.scss" as *;
+@import "../../common/styles/components/CardOutline.scss";
+
+.podcast {
+  display: flex;
+  justify-content: space-between;
+  .info {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+    gap: 50px;
+  }
+}

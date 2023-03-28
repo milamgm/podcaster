@@ -1,0 +1,45 @@
+@use "../../../../common/styles/abstracts/variables.scss" as *;
+@import "../../../../common/styles/components/CardOutline.scss";
+
+.episodes {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+
+  .counter_card {
+    display: flex;
+    align-items: center;
+    @include card_outline;
+    padding-left: 20px;
+    height: 35px;
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+
+  .items_list {
+    @include card_outline;
+    padding-left: 20px;
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    tr {
+      border-bottom: 1px solid $light;
+
+      td,
+      th {
+        height: 27px;
+        text-align: left;
+        padding: 8px;
+        &:nth-child(1) {
+          width: 60%;
+        }
+      }
+
+      &:nth-child(even) {
+        background-color: #dddddd;
+      }
+    }
+  }
+}
