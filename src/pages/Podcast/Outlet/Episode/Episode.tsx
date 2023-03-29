@@ -1,18 +1,25 @@
 import { AudioPlayer } from "../../../../common/utilities";
+import { useLocation } from "react-router-dom";
+import DOMPurify from "dompurify";
 import "./Episode.scss";
 
 const Episode = () => {
+  const location = useLocation();
+  const episode = location.state?.data;
+  console.log(episode);
+
   return (
     <div className="episode">
       <div className="episode_card">
-        <h3 className="title">Wilco</h3>
-        <p className="description">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium
-          quia atque et explicabo numquam nam tempora, eaque laboriosam natus id
-          quae ratione, animi tenetur nihil nobis, vero a fuga sapiente?
-        </p>
+        <h3 className="title">{episode.trackName}</h3>
+        <div
+          className="description"
+          dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(episode.description),
+          }}
+        />
         <hr />
-        <AudioPlayer />
+        <AudioPlayer url={episode.episodeUrl} />
       </div>
     </div>
   );

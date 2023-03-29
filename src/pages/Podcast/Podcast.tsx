@@ -1,11 +1,13 @@
 import { ExtendedItemCard } from "../../common/utilities";
-import { Outlet } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import "./Podcast.scss";
 
 const Podcast = () => {
+  let { podcastId } = useParams();
+
   return (
     <div className="podcast">
-      <ExtendedItemCard />
+      <ExtendedItemCard podcastId={podcastId} />
       <div className="info">
         <Outlet />
       </div>

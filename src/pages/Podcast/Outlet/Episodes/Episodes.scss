@@ -19,13 +19,16 @@
   .items_list {
     @include card_outline;
     padding-left: 20px;
+    height: fit-content;
+    max-height: 60vh;
+    overflow-y: scroll;
     table {
       font-family: arial, sans-serif;
       border-collapse: collapse;
       width: 100%;
     }
     tr {
-      border-bottom: 1px solid $light;
+      border-bottom: 1px solid $middle;
 
       td,
       th {
@@ -38,7 +41,7 @@
       }
 
       &:nth-child(even) {
-        background-color: #dddddd;
+        background-color: $light;
       }
     }
   }
