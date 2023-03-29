@@ -1,3 +1,4 @@
+import { useNavigate, Link } from "react-router-dom";
 import "./ItemCard.scss";
 
 interface Props {
@@ -7,9 +8,13 @@ interface Props {
   image: string;
 }
 
-const ItemCard = ({ title, author, image }: Props) => {
+const ItemCard = ({ id, title, author, image }: Props) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/podcast/${id}`);
+  };
   return (
-    <div className="item_card">
+    <Link className="item_card" to={`/podcast/${id}`}>
       <div className="background">
         <div className="content">
           <img className="thumbnail" src={image} alt="" />
@@ -19,7 +24,7 @@ const ItemCard = ({ title, author, image }: Props) => {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
