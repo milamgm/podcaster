@@ -1,9 +1,13 @@
 import "./AudioPlayer.scss";
 
-const AudioPlayer = () => {
+interface Props {
+  url: string;
+}
+
+const AudioPlayer = ({ url }: Props) => {
   return (
     <div className="audioPlayer">
-      <audio id="audio" src="./audio/treck1.mp3" controls></audio>
+      <audio id="audio" src={url} controls></audio>
     </div>
   );
 };
