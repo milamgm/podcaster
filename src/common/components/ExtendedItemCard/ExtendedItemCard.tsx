@@ -1,31 +1,53 @@
+import { useEffect, useState } from "react";
+import { useAppContext } from "../../../application/context/AppContext";
+import LinkToPodcast from "./components/LinkToPodcast";
 import "./ExtendedItemCard.scss";
 
-const ExtendedItemCard = () => {
-  
+interface Props {
+  podcastId: string | undefined;
+}
+const ExtendedItemCard = ({ podcastId }: Props) => {
+  const { podcastsFetch } = useAppContext();
+  const [selectedPodcast, setSelectedPodcast] = useState(null);
+
+  useEffect(() => {
+    if (podcastsFetch.length >= 1) {
+      console.log(podcastsFetch);
+      const filteredPodcast = podcastsFetch?.filter(
+        (entry: any) => entry.id.attributes["im:id"] == podcastId
+      )[0];
+      setSelectedPodcast(filteredPodcast);
+    }
+  }, [podcastsFetch]);
+
   return (
-    <div className="extended_item_card">
-      <div className="img_wrapper">
-        <img
-          src="https://images.pexels.com/photos/176837/pexels-photo-176837.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          alt=""
-        />
-      </div>
-      <hr />
-      <div className="main_info">
-        <h3 className="title">Song Exploder</h3>
-        <h4 className="subtitle">Mdi Sound</h4>
-      </div>
-      <hr />
-      <div className="description">
-        <h4 className="title">Description:</h4>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Non impedit
-          amet aliquam in tenetur, quibusdam, expedita quasi ratione illum
-          perferendis fugit mollitia magni dolores quas? Expedita, aut pariatur.
-          Ad, enim.
-        </p>
-      </div>
-    </div>
+    <>
+      {selectedPodcast && (
+        <div className="extended_item_card">
+          <LinkToPodcast>
+            <div className="img_wrapper">
+              <img src={selectedPodcast["im:image"][1]?.label} alt="" />
+            </div>
+          </LinkToPodcast>
+          <hr />
+          <div className="main_info">
+            <LinkToPodcast>
+              <h3 className="title">{selectedPodcast?.title.label}</h3>
+            </LinkToPodcast>
+            <LinkToPodcast>
+              <h4 className="subtitle">
+                {selectedPodcast["im:artist"]?.label}
+              </h4>
+            </LinkToPodcast>
+          </div>
+          <hr />
+          <div className="description">
+            <h4 className="title">Description:</h4>
+            <p>{selectedPodcast?.summary.label}</p>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

@@ -3,11 +3,14 @@
 
 .extended_item_card {
   width: 300px;
+  height: fit-content;
+  max-height: 570px;
   display: flex;
   flex-direction: column;
   gap: 25px;
   border-radius: 4px;
   box-shadow: $main_shadow;
+  color: $dark;
   @include card_outline;
   hr {
     border: 1px solid $light;
@@ -25,16 +28,25 @@
     }
   }
   .main_info {
-  padding: 0px 10px;
+    padding: 0px 10px;
     line-height: 25px;
+    .title {
+      color: $dark;
+    }
     .subtitle {
       font-weight: 200;
       font-style: italic;
+      color: $dark;
     }
   }
   .description {
     padding: 0px 10px;
     line-height: 22px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 8;
+    -webkit-box-orient: vertical;
     .title {
       margin-bottom: 5px;
     }
