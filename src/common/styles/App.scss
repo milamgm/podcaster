@@ -8,7 +8,22 @@
 body{
     color: $dark;
 }
-a{
+a, .link{
     color: $primary_color;
     text-decoration: none;
+    cursor: pointer;
 }
+
+*::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background:transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: $light;
+    border-radius: 10px;
+    border: 1.5px solid $middle;
+  }
