@@ -1,10 +1,7 @@
-interface podcastData {
-  id: number;
-  name: string;
-  artist: string;
-  image: string;
-  summary: string;
-  url: string;
+export interface IAppContext {
+  podcastsFetch: any;
+  displayPodcasts: any;
+  setDisplayPodcasts: React.Dispatch<React.SetStateAction<any>>;
 }
 
 export type { podcastData };

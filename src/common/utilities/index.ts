@@ -7,9 +7,13 @@ import AudioPlayer from "../components/AudioPlayer";
 import Podcast from "../../pages/Podcast";
 import SearchField from "../components/SearchField";
 import AppProvider from "../../application/context/AppContext";
+import useRetrieveData from "../../application/api/hooks/useRetrieveData";
+import useTimeConverter from "../hooks/useTimeConverter";
+import useRetrieveDetails from "../../application/api/hooks/useRetrieveDetails";
 
 export {
   AppProvider,
+  useRetrieveDetails,
   Layout,
   Home,
   Podcast,
@@ -18,4 +22,6 @@ export {
   SearchField,
   ExtendedItemCard,
   AudioPlayer,
+  useRetrieveData,
+  useTimeConverter
 };
