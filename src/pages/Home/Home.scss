@@ -10,5 +10,9 @@
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 15px;
+    @media screen and (max-width: 780px){
+      flex-direction: column;
+      align-items: center;
+    }
   }
 }
