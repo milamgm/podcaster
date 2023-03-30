@@ -6,7 +6,7 @@ import { AppProvider } from "./common/utilities";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter  basename="/podcaster/">
       <AppProvider>
         <App />
       </AppProvider>

@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
 import axios from "axios";
+import { useState, useEffect } from "react";
 import { IEpisode } from "../../../common/types";
 
 const useRetrieveDetails = (podcastId: string | number | symbol | any) => {
@@ -8,19 +8,17 @@ const useRetrieveDetails = (podcastId: string | number | symbol | any) => {
 
   useEffect(() => {
     const fetchData = async () => {
+      const url = `https://itunes.apple.com/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode&limit=20`;
       try {
         // Send a GET request to the iTunes API to retrieve episode details for the given podcast ID
         const response = await axios({
           method: "get",
-          url: `https://itunes.apple.com/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode&limit=20`,
+          url: `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`,
           withCredentials: false,
-          params: {
-            access_token: "https://allorigins.win",
-          },
         });
 
         // Extract the results from the response data
-        const results = response.data.results;
+        const results = JSON.parse(response.data.contents).results;
 
         // Map the results to a new array
         let newObject: IEpisode[] = [];
