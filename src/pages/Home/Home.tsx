@@ -1,4 +1,5 @@
 import { useAppContext } from "../../application/context/AppContext";
+import { IPodcast } from "../../common/types";
 import { ItemCard, SearchField } from "../../common/utilities";
 import "./Home.scss";
 
@@ -11,16 +12,16 @@ const Home = () => {
         <SearchField />
       </div>
       <div className="items_list">
-        {displayPodcasts &&
-          displayPodcasts.map((podcast) => (
+         {displayPodcasts &&
+          displayPodcasts.map((podcast : IPodcast) => (
             <ItemCard
-              key={podcast?.id.attributes["im:id"]}
-              id={podcast?.id.attributes["im:id"]}
-              title={podcast?.title.label}
-              author={podcast["im:artist"]?.label}
-              image={podcast["im:image"][1]?.label}
+              key={podcast?.id}
+              id={podcast?.id}
+              title={podcast?.title}
+              author={podcast.author}
+              image={podcast.image}
             />
-          ))}
+          ))} 
       </div>
     </div>
   );

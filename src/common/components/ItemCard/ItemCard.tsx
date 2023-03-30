@@ -1,4 +1,4 @@
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./ItemCard.scss";
 
 interface Props {
@@ -9,10 +9,6 @@ interface Props {
 }
 
 const ItemCard = ({ id, title, author, image }: Props) => {
-  const navigate = useNavigate();
-  const handleClick = () => {
-    navigate(`/podcast/${id}`);
-  };
   return (
     <Link className="item_card" to={`/podcast/${id}`}>
       <div className="background">

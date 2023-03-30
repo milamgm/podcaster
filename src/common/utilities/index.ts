@@ -10,6 +10,8 @@ import AppProvider from "../../application/context/AppContext";
 import useRetrieveData from "../../application/api/hooks/useRetrieveData";
 import useTimeConverter from "../hooks/useTimeConverter";
 import useRetrieveDetails from "../../application/api/hooks/useRetrieveDetails";
+import Spinner from "../components/Spinner";
+
 
 export {
   AppProvider,
@@ -22,6 +24,7 @@ export {
   SearchField,
   ExtendedItemCard,
   AudioPlayer,
+  Spinner,
   useRetrieveData,
   useTimeConverter
 };

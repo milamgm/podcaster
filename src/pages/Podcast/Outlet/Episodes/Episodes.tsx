@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import { useAppContext } from "../../../../application/context/AppContext";
+import { IEpisode } from "../../../../common/types";
 import {
   useRetrieveDetails,
   useTimeConverter,
@@ -9,18 +11,23 @@ import "./Episodes.scss";
 
 const Episodes = () => {
   let { podcastId } = useParams();
-  const { data, isLoading } = useRetrieveDetails(podcastId);
-  const [podcastData, setPodcastData] = useState([]);
+  const { setLoading } = useAppContext();
+  const { data, isLoadingDetails } = useRetrieveDetails(podcastId);
+  const [podcastData, setPodcastData] = useState<IEpisode[]>([]);
 
   useEffect(() => {
-    if (!isLoading) {
+    if (!isLoadingDetails) {
       setPodcastData(data);
     }
-  }, [data, isLoading]);
+  }, [data, isLoadingDetails]);
+
+  useEffect(() => {
+    setLoading(isLoadingDetails);
+  }, [isLoadingDetails]);
 
   return (
     <>
-      {!isLoading && (
+      {!isLoadingDetails && (
         <div className="episodes">
           <div className="counter_card">
             Episodes: {podcastData && podcastData.length}
@@ -36,7 +43,7 @@ const Episodes = () => {
               </thead>
               <tbody>
                 {podcastData &&
-                  podcastData.map((episode) => (
+                  podcastData.map((episode: IEpisode) => (
                     <tr key={episode.trackId}>
                       <td>
                         <Link
@@ -51,7 +58,9 @@ const Episodes = () => {
                           new Date(episode.releaseDate)
                         )}
                       </td>
-                      <td><TimeConverter episode={episode} /></td>
+                      <td>
+                        <TimeConverter episode={episode} />
+                      </td>
                     </tr>
                   ))}
               </tbody>
@@ -59,7 +68,7 @@ const Episodes = () => {
           </div>
         </div>
       )}
-      {isLoading && <h3>Loading...</h3>}
+      {isLoadingDetails && <h3>Loading...</h3>}
     </>
   );
 };

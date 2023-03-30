@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { IAppContext } from "../../common/types";
-import { useRetrieveData } from "../../common/utilities/";
+import { IAppContext, IPodcast } from "../../common/types";
+import { useRetrieveData, useRetrieveDetails } from "../../common/utilities/";
 
 interface Props {
   children: JSX.Element;
@@ -12,16 +12,24 @@ export const useAppContext = () => {
   return useContext(AppContext);
 };
 
-const AppProvider = ({ children }: Props) => {
-  const {data, isLoading} = useRetrieveData();
-  const [podcastsFetch, setPodcastsFetch] = useState([]);
-  const [displayPodcasts, setDisplayPodcasts] = useState([]);
-  const values = { podcastsFetch, displayPodcasts, setDisplayPodcasts, isLoading };
+export const AppProvider = ({ children }: Props) => {
+  const { data, isLoading } = useRetrieveData();
+  const [podcastsFetch, setPodcastsFetch] = useState<IPodcast[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [displayPodcasts, setDisplayPodcasts] = useState<IPodcast[]>([]);
+  const values = {
+    podcastsFetch,
+    displayPodcasts,
+    setDisplayPodcasts,
+    loading,
+    setLoading,
+  };
 
   useEffect(() => {
     if (!isLoading) {
       setPodcastsFetch(data);
       setDisplayPodcasts(data);
+      setLoading(isLoading);
     }
   }, [data, isLoading]);
 
