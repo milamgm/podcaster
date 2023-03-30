@@ -14,6 +14,7 @@ const Episode = () => {
   const [episodeData, setEpisodeData] = useState<IEpisode>();
 
   useEffect(() => {
+    //Filter podcasts array and update the episode data state
     if (data) {
       const filteredEpisode = data.find(
         (episode: IEpisode) => episode.trackId == episodeId

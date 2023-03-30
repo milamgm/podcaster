@@ -6,6 +6,7 @@ const useSearch = (query: string) => {
   const { podcastsFetch } = useAppContext();
   const [filteredPodcasts, setFilteredPodcasts] = useState([]);
 
+  // Filters podcasts based on a query
   useEffect(() => {
     const results = podcastsFetch?.filter((entry: IPodcast) => {
       return (

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { IPodcast } from "../../../common/types";
 
+
 const useRetrieveData = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState<IPodcast[]>([]);
@@ -9,11 +10,12 @@ const useRetrieveData = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // Retrieve data from API
         const response = await axios.get(
           "https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json"
         );
         const results = response.data.feed.entry;
-        console.log(results);
+        // Parse retrieved data and update state
         let podcastsArr: IPodcast[] = [];
         results.forEach((podcast: any) => {
           podcastsArr = [
@@ -28,6 +30,7 @@ const useRetrieveData = () => {
           ];
         });
         setData(podcastsArr);
+        // Store retrieved data in local storage for later use
         localStorage.setItem("apiData", JSON.stringify(podcastsArr));
         localStorage.setItem("lastFetch", `${Date.now()}`);
         setIsLoading(false);
@@ -35,6 +38,8 @@ const useRetrieveData = () => {
         console.error("ERROR: " + error);
       }
     };
+
+    // Check if data has been fetched before and use cached data if possible
     const localSLastFetchType = localStorage.getItem("lastFetch") as string;
     const lastFetch = JSON.parse(localSLastFetchType);
     if (!lastFetch || Date.now() - lastFetch > 86400000) {

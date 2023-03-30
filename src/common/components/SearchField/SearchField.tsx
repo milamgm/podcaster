@@ -8,6 +8,8 @@ const SearchField = () => {
   const [query, setQuery] = useState("");
   const filteredPodcasts = useSearch(query);
   const podcastsQty = filteredPodcasts.length
+  
+  // Update displayPodcasts whenever the search query changes
   useEffect(()=> {
     setDisplayPodcasts(filteredPodcasts)
   },[filteredPodcasts])

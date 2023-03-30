@@ -12,6 +12,7 @@ const ExtendedItemCard = ({ podcastId }: Props) => {
   const [selectedPodcast, setSelectedPodcast] = useState<IPodcast | null>(null);
 
   useEffect(() => {
+    // Takes the corresponding podcast from array
     if (podcastsFetch.length >= 1) {
       const filteredPodcast = podcastsFetch?.filter(
         (entry: IPodcast) => entry.id == Number(podcastId)

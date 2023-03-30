@@ -21,6 +21,7 @@ const Episodes = () => {
     }
   }, [data, isLoadingDetails]);
 
+  //Sets main loading state with isLoadingDetails value
   useEffect(() => {
     setLoading(isLoadingDetails);
   }, [isLoadingDetails]);
