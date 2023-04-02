@@ -7,6 +7,8 @@ const useRetrieveDetails = (podcastId: string | number | symbol | any) => {
   const [data, setData] = useState<IEpisode[]>([]);
 
   useEffect(() => {
+    const source = axios.CancelToken.source()
+
     const fetchData = async () => {
       const url = `https://itunes.apple.com/lookup?id=${podcastId}&media=podcast&entity=podcastEpisode&limit=20`;
       try {
@@ -15,6 +17,7 @@ const useRetrieveDetails = (podcastId: string | number | symbol | any) => {
           method: "get",
           url: `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`,
           withCredentials: false,
+          cancelToken: source.token
         });
 
         // Extract the results from the response data
@@ -49,6 +52,7 @@ const useRetrieveDetails = (podcastId: string | number | symbol | any) => {
         // Set loading status to false
         setIsLoadingDetails(false);
       } catch (error) {
+        if (axios.isCancel(error)) console.log("caugth cancel")
         console.error("ERROR: " + error);
       }
     };
@@ -68,6 +72,9 @@ const useRetrieveDetails = (podcastId: string | number | symbol | any) => {
       setData(storedItem.detail);
       setIsLoadingDetails(false);
     }
+
+
+    return () => source.cancel()
   }, []);
 
   // Return the retrieved data and loading status

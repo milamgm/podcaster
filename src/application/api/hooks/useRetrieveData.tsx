@@ -8,11 +8,14 @@ const useRetrieveData = () => {
   const [data, setData] = useState<IPodcast[]>([]);
 
   useEffect(() => {
+    const source = axios.CancelToken.source()
+
     const fetchData = async () => {
       try {
         // Retrieve data from API
         const response = await axios.get(
-          "https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json"
+          "https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json",
+          { cancelToken: source.token }
         );
         const results = response.data.feed.entry;
         // Parse retrieved data and update state
@@ -35,6 +38,7 @@ const useRetrieveData = () => {
         localStorage.setItem("lastFetch", `${Date.now()}`);
         setIsLoading(false);
       } catch (error) {
+        if (axios.isCancel(error)) console.log("caugth cancel")
         console.error("ERROR: " + error);
       }
     };
@@ -50,6 +54,8 @@ const useRetrieveData = () => {
       setData(storedData);
       setIsLoading(false);
     }
+
+    return () => source.cancel()
   }, []);
 
   return { data, isLoading };
