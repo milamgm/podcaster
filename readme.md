@@ -2,7 +2,7 @@
 
 Welcome to Podcaster, an iTunes podcast explorer app designed to help you discover and enjoy a wide variety of podcasts available on iTunes.
 
-<h2>App description</h2>
+<h2>App Description</h2>
 This is a web application that displays a list of podcasts from iTunes. The application has three views:
 
 <h3>View 1: Podcast List</h3>
