@@ -27,3 +27,21 @@ a, .link{
     border-radius: 10px;
     border: 1.5px solid $middle;
   }
+
+
+  @keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes moveUp {
+    from {
+      transform: translateY(10px);
+    }
+    to {
+      transform: translateY(0px);
+    }
+  }
