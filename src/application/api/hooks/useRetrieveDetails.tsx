@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { IEpisode } from "../../../common/types";
+import { IEpisode, IStoredItem } from "../../../common/types";
 
 const useRetrieveDetails = (podcastId: string | number | symbol | any) => {
   const [isLoadingDetails, setIsLoadingDetails] = useState(true);
   const [data, setData] = useState<IEpisode[]>([]);
+  let storedItems: IStoredItem[]
+  let storedItem: IStoredItem
 
   useEffect(() => {
     const source = axios.CancelToken.source()
@@ -57,16 +59,20 @@ const useRetrieveDetails = (podcastId: string | number | symbol | any) => {
       }
     };
 
-    // Retrieve stored items from local storage
-    const storedItemsType = localStorage.getItem("storedItems") as string;
-    const storedItems = JSON.parse(storedItemsType);
 
-    // Retrieve the stored data for the given podcast ID
-    const storedItem = storedItems[podcastId];
+    // Retrieve stored items from local storage
+    if (localStorage.getItem("storedItems")) {
+      const storedItemsType = localStorage.getItem("storedItems") as string;
+      storedItems = JSON.parse(storedItemsType);
+
+      // Retrieve the stored data for the given podcast ID
+      storedItem = storedItems[podcastId];
+    }
+
 
     // If there is no stored data or it has been more than a day since the last fetch, fetch the data
     if (!storedItem || Date.now() - storedItem.lastFetch > 86400000) {
-     fetchData();
+      fetchData();
 
     } else {
       // Otherwise, use the stored data and set loading status to false

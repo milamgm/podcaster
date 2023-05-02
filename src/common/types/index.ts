@@ -6,7 +6,6 @@ export interface IAppContext {
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-
 export interface IPodcast {
   id: number,
   title: string,
@@ -14,6 +13,12 @@ export interface IPodcast {
   image: string,
   description: string
 }
+
+export interface IStoredItem {
+  detail: IEpisode[],
+  lastFetch: number
+}
+
 export interface IEpisode {
   trackId: string,
   trackName: string,
