@@ -67,6 +67,7 @@ const useRetrieveDetails = (podcastId: string | number | symbol | any) => {
     // If there is no stored data or it has been more than a day since the last fetch, fetch the data
     if (!storedItem || Date.now() - storedItem.lastFetch > 86400000) {
       fetchData();
+      
     } else {
       // Otherwise, use the stored data and set loading status to false
       setData(storedItem.detail);

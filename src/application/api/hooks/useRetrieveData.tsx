@@ -33,6 +33,7 @@ const useRetrieveData = () => {
           ];
         });
         setData(podcastsArr);
+        
         // Store retrieved data in local storage for later use
         localStorage.setItem("apiData", JSON.stringify(podcastsArr));
         localStorage.setItem("lastFetch", `${Date.now()}`);
