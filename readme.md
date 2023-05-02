@@ -31,6 +31,3 @@ This project was developed using Vite, a high-speed and lightweight build tool t
   <li><strong>Jest</strong>, <strong>Vitest</strong> and <strong>React Testing Library</strong> for unit and integration testing</li>
   <li><strong>Mock Service Worker</strong> for mocking API requests in tests</li>
 </ul>
-
-
-<h4><b>Visit the page: https://milamgm.github.io/podcaster/</b></h4>
