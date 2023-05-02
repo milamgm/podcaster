@@ -62,18 +62,17 @@ const useRetrieveDetails = (podcastId: string | number | symbol | any) => {
     const storedItems = JSON.parse(storedItemsType);
 
     // Retrieve the stored data for the given podcast ID
-    const storedItem = storedItems?.podcastId;
+    const storedItem = storedItems[podcastId];
 
     // If there is no stored data or it has been more than a day since the last fetch, fetch the data
     if (!storedItem || Date.now() - storedItem.lastFetch > 86400000) {
-      fetchData();
-      
+     fetchData();
+
     } else {
       // Otherwise, use the stored data and set loading status to false
       setData(storedItem.detail);
       setIsLoadingDetails(false);
     }
-
 
     return () => source.cancel()
   }, []);

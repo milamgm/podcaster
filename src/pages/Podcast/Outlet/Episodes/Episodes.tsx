@@ -3,8 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { useAppContext } from "../../../../application/context/AppContext";
 import { IEpisode } from "../../../../common/types";
 import {
-  useRetrieveDetails,
-  useTimeConverter,
+  useRetrieveDetails
 } from "../../../../common/utilities";
 import TimeConverter from "./components/TimeConverter";
 import "./Episodes.scss";
